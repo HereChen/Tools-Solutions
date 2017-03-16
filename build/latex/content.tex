@@ -1,0 +1,130 @@
+\section{持续集成}\label{ux6301ux7eedux96c6ux6210}
+
+\subsection{travis-ci}\label{travis-ci}
+
+travis-ci 结合 github 使用, 每次提交自动执行编译或测试任务.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textless{}travis-ci.org\textgreater{} 用 github 账户授权登录
+\item
+  travis-ci 上添加需要持续集成的 github repo
+\item
+  github repo 中添加 \texttt{.travis.yml} 配置, 用以配置 travis
+  所要执行的任务和环境
+\item
+  repo 更改完成, 提交, 可在 travis-ci 上实时查看任务执行过程
+\end{enumerate}
+
+备注:
+
+\begin{itemize}
+\tightlist
+\item
+  添加编译状态图标
+\end{itemize}
+
+\begin{verbatim}
+[![Build Status](https://travis-ci.org/HereChen/Tools-Solutions.svg?branch=master)](https://travis-ci.org/HereChen/Tools-Solutions)
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  此库的 \texttt{.travis.yml} 样本
+\end{itemize}
+
+\begin{verbatim}
+sudo: required
+dist: trusty     # ubuntu 14.04
+
+# install
+before_install:
+    - sudo apt-get update
+    - sudo apt-get -y install texlive-full
+    - sudo apt-get -y install pandoc
+
+before_script:
+    - chmod +x build.sh
+
+script:
+    - ./build.sh
+\end{verbatim}
+
+\section{工具安装}\label{ux5de5ux5177ux5b89ux88c5}
+
+\subsection{Linux 下安装 nodejs
+(x64)}\label{linux-ux4e0bux5b89ux88c5-nodejs-x64}
+
+安装的方式包括: 从源码编译安装, 直接下载二进制, 依靠工具直接从库下载安装
+
+\textbf{从源码安装}
+
+\begin{verbatim}
+curl -o node-v6.10.0.tar.gz https://nodejs.org/dist/v6.10.0/node-v6.10.0.tar.gz
+tar -xvzf node-v6.10.0.tar.gz
+cd node-v6.10.0
+./configure
+make
+make install
+\end{verbatim}
+
+\textbf{CentOS 下载二进制安装}
+
+\begin{verbatim}
+# 64bit node install
+curl -o node-v6.10.0-linux-x64.tar.xz https://nodejs.org/dist/v6.10.0/node-v6.10.0-linux-x64.tar.xz
+mv /opt/
+cd /opt/
+tar -xvJf node-v6.10.0-linux-x64.tar.xz
+mv node-v6.10.0-linux-x64 node
+
+vi ~/.bash_profile
+# 添加以下内容到 .bash_profile
+# export NODE_HOME=/opt/node
+# export PATH=$NODE_HOME/bin:$PATH
+source ~/.bash_profile
+
+node -v
+\end{verbatim}
+
+\textbf{Ubuntu 从库中下载安装}
+
+\begin{verbatim}
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+\end{verbatim}
+
+\subsection{git 安装}\label{git-ux5b89ux88c5}
+
+\textbf{CentOS 从源码安装 git}
+
+直接 \texttt{yum\ install\ git} 安装的版本比较老, 安装最新版可从源码安装
+
+\begin{verbatim}
+# 依赖工具安装
+yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+yum install gcc perl-ExtUtils-MakeMaker
+
+# git 源码下载
+# https://www.kernel.org/pub/software/scm/git/
+curl -o git-2.9.3.tar.xz https://www.kernel.org/pub/software/scm/git/git-2.9.3.tar.xz
+tar -xvJf git-2.9.3.tar.xz
+
+# 编译安装 git
+cd git-2.9.3
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x}{How
+  to install latest version of git on CentOS 6.x/7.x}
+\item
+  \href{https://git-scm.com/book/zh/v1/\%E8\%B5\%B7\%E6\%AD\%A5-\%E5\%AE\%89\%E8\%A3\%85-Git}{起步
+  - 安装 Git}
+\end{itemize}
