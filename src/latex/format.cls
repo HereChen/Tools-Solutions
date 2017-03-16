@@ -48,3 +48,5 @@
 % \tightlist error
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% longtable error
+\usepackage{longtable,booktabs}
