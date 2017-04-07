@@ -2,6 +2,8 @@
 
 ## travis-ci
 
+### travis-ci 使用流程
+
 travis-ci 结合 github 使用, 每次提交自动执行编译或测试任务.
 
 1. <travis-ci.org> 用 github 账户授权登录
@@ -11,13 +13,15 @@ travis-ci 结合 github 使用, 每次提交自动执行编译或测试任务.
 
 备注:
 
-- 添加编译状态图标
+### 添加编译状态图标
 
 ```
 [![Build Status](https://travis-ci.org/HereChen/Tools-Solutions.svg?branch=master)](https://travis-ci.org/HereChen/Tools-Solutions)
 ```
 
-- 此库的 `.travis.yml` 样本
+### travis 配置文件样本
+
+此库的 `.travis.yml` 样本
 
 ```
 sudo: required

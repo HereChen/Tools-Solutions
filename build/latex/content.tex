@@ -2,6 +2,9 @@
 
 \subsection{travis-ci}\label{travis-ci}
 
+\subsubsection{travis-ci
+使用流程}\label{travis-ci-ux4f7fux7528ux6d41ux7a0b}
+
 travis-ci 结合 github 使用, 每次提交自动执行编译或测试任务.
 
 \begin{enumerate}
@@ -12,7 +15,7 @@ travis-ci 结合 github 使用, 每次提交自动执行编译或测试任务.
 \item
   travis-ci 上添加需要持续集成的 github repo
 \item
-  github repo 中添加 \texttt{.travis.yml} 配置, 用以配置 travis
+  github repo 中添加 \lstinline!.travis.yml! 配置, 用以配置 travis
   所要执行的任务和环境
 \item
   repo 更改完成, 提交, 可在 travis-ci 上实时查看任务执行过程
@@ -20,23 +23,18 @@ travis-ci 结合 github 使用, 每次提交自动执行编译或测试任务.
 
 备注:
 
-\begin{itemize}
-\tightlist
-\item
-  添加编译状态图标
-\end{itemize}
+\subsubsection{添加编译状态图标}\label{ux6dfbux52a0ux7f16ux8bd1ux72b6ux6001ux56feux6807}
 
-\begin{verbatim}
+\begin{lstlisting}
 [![Build Status](https://travis-ci.org/HereChen/Tools-Solutions.svg?branch=master)](https://travis-ci.org/HereChen/Tools-Solutions)
-\end{verbatim}
+\end{lstlisting}
 
-\begin{itemize}
-\tightlist
-\item
-  此库的 \texttt{.travis.yml} 样本
-\end{itemize}
+\subsubsection{travis
+配置文件样本}\label{travis-ux914dux7f6eux6587ux4ef6ux6837ux672c}
 
-\begin{verbatim}
+此库的 \lstinline!.travis.yml! 样本
+
+\begin{lstlisting}
 sudo: required
 dist: trusty     # ubuntu 14.04
 
@@ -51,7 +49,77 @@ before_script:
 
 script:
     - ./build.sh
-\end{verbatim}
+\end{lstlisting}
+
+\section{文档处理工具}\label{ux6587ux6863ux5904ux7406ux5de5ux5177}
+
+\subsection{Pandoc}\label{pandoc}
+
+Pandoc 主页 \url{http://pandoc.org}. Pandoc
+可以实现不同格式文档的相互转换, 支持的格式包括
+markdown、HTML、LaTeX、docx、EPUB ODT等等.
+
+\subsubsection{markdown
+多个文档转换}\label{markdown-ux591aux4e2aux6587ux6863ux8f6cux6362}
+
+\begin{lstlisting}
+pandoc src/markdown/*.md -o build/latex/content.tex
+\end{lstlisting}
+
+\subsubsection{markdown 转 LaTeX, 用 listings 包替换
+verbatim}\label{markdown-ux8f6c-latex-ux7528-listings-ux5305ux66ffux6362-verbatim}
+
+pandoc --listings src/markdown/*.md -o build/latex/content.tex
+
+\subsection{LaTeX}\label{latex}
+
+\subsubsection{Windows 上编译缓慢, 经常卡在
+eu1lmr.fd}\label{windows-ux4e0aux7f16ux8bd1ux7f13ux6162-ux7ecfux5e38ux5361ux5728-eu1lmr.fd}
+
+删除 \lstinline!texlive\2016\texmf-var\fonts\cache! 文件夹下字体缓存,
+重新生成字体缓存, 执行 \lstinline!texlive\2016\bin\win32\fc-cache.exe!.
+
+\textbf{refer}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://www.zhihu.com/question/51999238/answer/135852542}{LaTeX编译卡顿怎么办？}
+\end{enumerate}
+
+\subsubsection{listings
+代码换行}\label{listings-ux4ee3ux7801ux6362ux884c}
+
+添加 \lstinline!breaklines=true! 后, 还是存在没有空格的 url 无法换行,
+需设置 \lstinline!breakatwhitespace=false!. 另外,
+可以在代码换行的地方添加箭头标识换行.
+
+\begin{lstlisting}
+\lstset{
+    breaklines=true,
+    % 箭头标识换行
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}},
+    breakatwhitespace=false
+}
+\end{lstlisting}
+
+\textbf{refer}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://tex.stackexchange.com/questions/179926/pandoc-markdown-to-pdf-without-cutting-off-code-block-lines-that-are-too-long}{Pandoc:
+  Markdown to PDF, without cutting off code block lines that are too
+  long}
+\item
+  \href{http://tex.stackexchange.com/questions/174569/code-not-wrapping-in-listings-even-though-breaklines-true}{Code
+  not wrapping in listings even though breaklines=true}
+\item
+  \href{http://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping}{lstlisting
+  line wrapping}
+\end{enumerate}
 
 \section{编辑器及插件}\label{ux7f16ux8f91ux5668ux53caux63d2ux4ef6}
 
@@ -72,25 +140,25 @@ script:
 
 \section{工具安装}\label{ux5de5ux5177ux5b89ux88c5}
 
-\subsection{Linux 下安装 nodejs
-(x64)}\label{linux-ux4e0bux5b89ux88c5-nodejs-x64}
+\subsection{nodejs}\label{nodejs}
 
-安装的方式包括: 从源码编译安装, 直接下载二进制, 依靠工具直接从库下载安装
+安装的方式包括: 从源码编译安装, 直接下载二进制,
+依靠工具直接从库下载安装.
 
 \textbf{从源码安装}
 
-\begin{verbatim}
+\begin{lstlisting}
 curl -o node-v6.10.0.tar.gz https://nodejs.org/dist/v6.10.0/node-v6.10.0.tar.gz
 tar -xvzf node-v6.10.0.tar.gz
 cd node-v6.10.0
 ./configure
 make
 make install
-\end{verbatim}
+\end{lstlisting}
 
 \textbf{CentOS 下载二进制安装}
 
-\begin{verbatim}
+\begin{lstlisting}
 # 64bit node install
 curl -o node-v6.10.0-linux-x64.tar.xz https://nodejs.org/dist/v6.10.0/node-v6.10.0-linux-x64.tar.xz
 mv /opt/
@@ -105,22 +173,25 @@ vi ~/.bash_profile
 source ~/.bash_profile
 
 node -v
-\end{verbatim}
+\end{lstlisting}
 
 \textbf{Ubuntu 从库中下载安装}
 
-\begin{verbatim}
+\begin{lstlisting}
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
-\end{verbatim}
+\end{lstlisting}
 
-\subsection{git 安装}\label{git-ux5b89ux88c5}
+\subsection{git}\label{git}
+
+\textbf{Ubuntu}
 
 \textbf{CentOS 从源码安装 git}
 
-直接 \texttt{yum\ install\ git} 安装的版本比较老, 安装最新版可从源码安装
+执行 \lstinline!yum install git! 安装的版本比较老,
+安装最新版可从源码安装
 
-\begin{verbatim}
+\begin{lstlisting}
 # 依赖工具安装
 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
 yum install gcc perl-ExtUtils-MakeMaker
@@ -134,9 +205,10 @@ tar -xvJf git-2.9.3.tar.xz
 cd git-2.9.3
 make prefix=/usr/local all
 sudo make prefix=/usr/local install
-\end{verbatim}
+\end{lstlisting}
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   \href{http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x}{How
@@ -144,4 +216,4 @@ sudo make prefix=/usr/local install
 \item
   \href{https://git-scm.com/book/zh/v1/\%E8\%B5\%B7\%E6\%AD\%A5-\%E5\%AE\%89\%E8\%A3\%85-Git}{起步
   - 安装 Git}
-\end{itemize}
+\end{enumerate}

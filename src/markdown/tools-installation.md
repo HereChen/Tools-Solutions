@@ -1,8 +1,8 @@
 # 工具安装
 
-## Linux 下安装 nodejs (x64)
+## nodejs
 
-安装的方式包括: 从源码编译安装, 直接下载二进制, 依靠工具直接从库下载安装
+安装的方式包括: 从源码编译安装, 直接下载二进制, 依靠工具直接从库下载安装.
 
 **从源码安装**
 
@@ -41,11 +41,13 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-## git 安装
+## git
+
+**Ubuntu**
 
 **CentOS 从源码安装 git**
 
-直接 `yum install git` 安装的版本比较老, 安装最新版可从源码安装
+执行 `yum install git` 安装的版本比较老, 安装最新版可从源码安装
 
 ```
 # 依赖工具安装
@@ -63,5 +65,5 @@ make prefix=/usr/local all
 sudo make prefix=/usr/local install
 ```
 
-- [How to install latest version of git on CentOS 6.x/7.x](http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x)
-- [起步 - 安装 Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
+1. [How to install latest version of git on CentOS 6.x/7.x](http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x)
+2. [起步 - 安装 Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
