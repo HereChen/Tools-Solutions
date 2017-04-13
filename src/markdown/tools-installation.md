@@ -43,11 +43,32 @@ sudo apt-get install -y nodejs
 
 ## git
 
-**Ubuntu**
+### Ubuntu
 
-**CentOS 从源码安装 git**
+安装最新版的 git[^ubuntuInstallLastVersionGit].
 
-执行 `yum install git` 安装的版本比较老, 安装最新版可从源码安装
+```
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+```
+
+如果上面执行报错 `Errors were encountered while processing: runit git-daemon-run`, 尝试执行下面命令.
+
+```
+sudo apt-get purge runit
+sudo apt-get purge git-all
+sudo apt-get purge git
+sudo apt-get autoremove
+sudo apt update
+sudo apt install git
+```
+
+[^ubuntuInstallLastVersionGit]: [Installing Latest version of git in ubuntu](http://stackoverflow.com/questions/19109542/installing-latest-version-of-git-in-ubuntu/19109661#19109661), [How to fix processing with runit and git-daemon-run [duplicate]](http://askubuntu.com/questions/765565/how-to-fix-processing-with-runit-and-git-daemon-run/772095#772095)
+
+### CentOS 从源码安装 git
+
+执行 `yum install git` 安装的版本比较老, 安装最新版可从源码安装[^centOSInstallLastVersionGit].
 
 ```
 # 依赖工具安装
@@ -65,5 +86,5 @@ make prefix=/usr/local all
 sudo make prefix=/usr/local install
 ```
 
-1. [How to install latest version of git on CentOS 6.x/7.x](http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x)
-2. [起步 - 安装 Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
+[^centOSInstallLastVersionGit]: [How to install latest version of git on CentOS 6.x/7.x](http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x)
+, [起步 - 安装 Git](https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)

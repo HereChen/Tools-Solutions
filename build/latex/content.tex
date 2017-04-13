@@ -77,25 +77,23 @@ pandoc --listings src/markdown/*.md -o build/latex/content.tex
 eu1lmr.fd}\label{windows-ux4e0aux7f16ux8bd1ux7f13ux6162-ux7ecfux5e38ux5361ux5728-eu1lmr.fd}
 
 删除 \lstinline!texlive\2016\texmf-var\fonts\cache! 文件夹下字体缓存,
-重新生成字体缓存, 执行 \lstinline!texlive\2016\bin\win32\fc-cache.exe!.
-
-\textbf{refer}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \href{https://www.zhihu.com/question/51999238/answer/135852542}{LaTeX编译卡顿怎么办？}
-\end{enumerate}
+重新生成字体缓存, 执行
+\lstinline!texlive\2016\bin\win32\fc-cache.exe!\footnote{\href{https://www.zhihu.com/question/51999238/answer/135852542}{LaTeX编译卡顿怎么办？}}.
 
 \subsubsection{listings
 代码换行}\label{listings-ux4ee3ux7801ux6362ux884c}
 
 添加 \lstinline!breaklines=true! 后, 还是存在没有空格的 url 无法换行,
 需设置 \lstinline!breakatwhitespace=false!. 另外,
-可以在代码换行的地方添加箭头标识换行.
+可以在代码换行的地方添加箭头标识换行\footnote{\href{http://tex.stackexchange.com/questions/179926/pandoc-markdown-to-pdf-without-cutting-off-code-block-lines-that-are-too-long}{Pandoc:
+  Markdown to PDF, without cutting off code block lines that are too
+  long} ,
+  \href{http://tex.stackexchange.com/questions/174569/code-not-wrapping-in-listings-even-though-breaklines-true}{Code
+  not wrapping in listings even though breaklines=true} ,
+  \href{http://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping}{lstlisting
+  line wrapping}}.
 
-\begin{lstlisting}
+\begin{lstlisting}[language=TeX]
 \lstset{
     breaklines=true,
     % 箭头标识换行
@@ -103,23 +101,6 @@ eu1lmr.fd}\label{windows-ux4e0aux7f16ux8bd1ux7f13ux6162-ux7ecfux5e38ux5361ux5728
     breakatwhitespace=false
 }
 \end{lstlisting}
-
-\textbf{refer}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \href{http://tex.stackexchange.com/questions/179926/pandoc-markdown-to-pdf-without-cutting-off-code-block-lines-that-are-too-long}{Pandoc:
-  Markdown to PDF, without cutting off code block lines that are too
-  long}
-\item
-  \href{http://tex.stackexchange.com/questions/174569/code-not-wrapping-in-listings-even-though-breaklines-true}{Code
-  not wrapping in listings even though breaklines=true}
-\item
-  \href{http://tex.stackexchange.com/questions/116534/lstlisting-line-wrapping}{lstlisting
-  line wrapping}
-\end{enumerate}
 
 \section{编辑器及插件}\label{ux7f16ux8f91ux5668ux53caux63d2ux4ef6}
 
@@ -184,12 +165,40 @@ sudo apt-get install -y nodejs
 
 \subsection{git}\label{git}
 
-\textbf{Ubuntu}
+\subsubsection{Ubuntu}\label{ubuntu}
 
-\textbf{CentOS 从源码安装 git}
+安装最新版的 git\footnote{\href{http://stackoverflow.com/questions/19109542/installing-latest-version-of-git-in-ubuntu/19109661\#19109661}{Installing
+  Latest version of git in ubuntu},
+  \href{http://askubuntu.com/questions/765565/how-to-fix-processing-with-runit-and-git-daemon-run/772095\#772095}{How
+  to fix processing with runit and git-daemon-run {[}duplicate{]}}}.
+
+\begin{lstlisting}
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+\end{lstlisting}
+
+如果上面执行报错
+\lstinline!Errors were encountered while processing: runit git-daemon-run!,
+尝试执行下面命令.
+
+\begin{lstlisting}
+sudo apt-get purge runit
+sudo apt-get purge git-all
+sudo apt-get purge git
+sudo apt-get autoremove
+sudo apt update
+sudo apt install git
+\end{lstlisting}
+
+\subsubsection{CentOS 从源码安装
+git}\label{centos-ux4eceux6e90ux7801ux5b89ux88c5-git}
 
 执行 \lstinline!yum install git! 安装的版本比较老,
-安装最新版可从源码安装
+安装最新版可从源码安装\footnote{\href{http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x}{How
+  to install latest version of git on CentOS 6.x/7.x} ,
+  \href{https://git-scm.com/book/zh/v1/\%E8\%B5\%B7\%E6\%AD\%A5-\%E5\%AE\%89\%E8\%A3\%85-Git}{起步
+  - 安装 Git}}.
 
 \begin{lstlisting}
 # 依赖工具安装
@@ -207,13 +216,3 @@ make prefix=/usr/local all
 sudo make prefix=/usr/local install
 \end{lstlisting}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \href{http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x}{How
-  to install latest version of git on CentOS 6.x/7.x}
-\item
-  \href{https://git-scm.com/book/zh/v1/\%E8\%B5\%B7\%E6\%AD\%A5-\%E5\%AE\%89\%E8\%A3\%85-Git}{起步
-  - 安装 Git}
-\end{enumerate}
