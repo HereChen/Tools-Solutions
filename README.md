@@ -19,3 +19,10 @@
 - travis-ci github token: github-> settings -> Personal access tokens 选择权限(只选了前两项)
 - travis-ci Permission Denied 错误: <https://nofluffjuststuff.com/blog/brian_kotek/2013/06/grails_travis_ci_and_permission_denied>
 - 错误: Skipping a deployment with the releases provider because this is not a tagged commit
+
+## 更新
+
+### 2017-05-03
+
+- 代码质量部分内容(findbugs, checkstyle, sonar).
+- LaTeX documentclass 换用 ctexart.

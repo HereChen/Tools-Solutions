@@ -1,3 +1,116 @@
+\section{代码质量}\label{ux4ee3ux7801ux8d28ux91cf}
+
+\subsection{checkstyle}\label{checkstyle}
+
+\subsubsection{maven}\label{maven}
+
+\begin{lstlisting}[language=XML]
+<reporting>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>2.17</version>
+            <configuration>
+                <!--自定义 checkstyle 配置路径-->
+                <configLocation>${project.basedir}/checkstyle.xml</configLocation>
+            </configuration>
+        </plugin>
+
+        <!--使 checkstyle 结果可以直接跳转到代码行位置-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.3</version>
+        </plugin>
+    </plugins>
+</reporting>
+\end{lstlisting}
+
+\lstinline!mvn site! 执行后, 打开 \lstinline!target/site/index.html!, 在
+Project Reports -\textgreater{} Checkstyle 查看报告. 点击对应行数,
+可查看具体代码位置.
+
+\textbf{checkstyle 常见问题包括}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  代码缩进不对.
+\item
+  控制语句没加大括号.
+\item
+  \lstinline!equals! 字符串应放在前面.
+\item
+  if-else 条件语句包含 return 的未简化(可去除 if-else 直接 return).
+\item
+  无用的包引入.
+\item
+  命名问题: 包名、变量名、类名、函数名.
+\item
+  字符串太长(超出限制).
+\item
+  缺注释.
+\end{enumerate}
+
+\textbf{checkstyle 修改快捷方法(eclipse 或者 IDEA)}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  变量名修改可用 Refactor 的快捷键. eclipse、IDEA 可用.
+\item
+  缩进或控制语句缺大括号, 可配置格式化属性(或导入模板),
+  快捷键针对工程中所有文件格式化, 比如 IDEA 的 Ctrl+Alt+L. eclipse, IDEA
+  可用.
+\item
+  eclipse 可安装 javadoc (不是这个名字), 对整个包快捷键添加注释.
+\end{enumerate}
+
+\subsection{findbugs}\label{findbugs}
+
+\subsubsection{IDEA 插件}\label{idea-ux63d2ux4ef6}
+
+idea 编辑器可安装 FindBugs-IDEA 插件
+(File-\textgreater{}Settings-\textgreater{}Plugins-\textgreater{}Browse
+repo\ldots{}). 安装重启后编辑器后, 底部会显示. 选择 src 文件夹, 点击
+\lstinline!Analyze Module Files! 可分析全部源文件.
+
+\subsubsection{maven}\label{maven-1}
+
+\begin{lstlisting}[language=XML]
+<reporting>
+    <plugins>
+        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/findbugs-maven-plugin -->
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.4</version>
+        </plugin>
+    </plugins>
+</reporting>
+\end{lstlisting}
+
+\lstinline!mvn site! 执行后在 Project Reports -\textgreater{} FindBugs
+查看报告.
+
+\subsection{sonar}\label{sonar}
+
+\subsubsection{IDEA 插件}\label{idea-ux63d2ux4ef6-1}
+
+idea 编辑器可安装 SonarLint 插件
+(File-\textgreater{}Settings-\textgreater{}Plugins-\textgreater{}Browse
+repo\ldots{}). 安装重启后, 点击底部显示的 SonarLint, 并点击此 tab 里面的
+Project Files, Scope 项选择 All projects files,
+点击绿色运行图标进行分析. 在编写代码过程中, 可切换到 Current file
+实时查看当前编写代码的问题.
+
+\subsubsection{maven}\label{maven-2}
+
+需配置数据库.
+
 \section{持续集成}\label{ux6301ux7eedux96c6ux6210}
 
 \subsection{travis-ci}\label{travis-ci}

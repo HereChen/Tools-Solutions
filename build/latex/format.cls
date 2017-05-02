@@ -4,7 +4,7 @@
 \usepackage{xcolor}
 
 % Chinese
-\usepackage{xeCJK}
+% \usepackage{xeCJK}
 
 % inlucde image
 \usepackage{graphicx}
