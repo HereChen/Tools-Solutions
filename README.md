@@ -20,6 +20,10 @@
 - travis-ci Permission Denied 错误: <https://nofluffjuststuff.com/blog/brian_kotek/2013/06/grails_travis_ci_and_permission_denied>
 - 错误: Skipping a deployment with the releases provider because this is not a tagged commit
 
+## 问题
+
+- LaTeX 代码复制包括行号.
+
 ## 更新
 
 ### 2017-05-03
