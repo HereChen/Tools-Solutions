@@ -94,7 +94,8 @@ repo\ldots{}). 安装重启后编辑器后, 底部会显示. 选择 src 文件�
 \end{lstlisting}
 
 \lstinline!mvn site! 执行后在 Project Reports -\textgreater{} FindBugs
-查看报告.
+查看报告. \lstinline!mvn site! 执行下载 FindBugs 相关依赖错误时,
+可尝试用 VPN 解决.
 
 \subsection{sonar}\label{sonar}
 
@@ -182,7 +183,9 @@ pandoc src/markdown/*.md -o build/latex/content.tex
 \subsubsection{markdown 转 LaTeX, 用 listings 包替换
 verbatim}\label{markdown-ux8f6c-latex-ux7528-listings-ux5305ux66ffux6362-verbatim}
 
+\begin{lstlisting}
 pandoc --listings src/markdown/*.md -o build/latex/content.tex
+\end{lstlisting}
 
 \subsection{LaTeX}\label{latex}
 
@@ -192,6 +195,12 @@ eu1lmr.fd}\label{windows-ux4e0aux7f16ux8bd1ux7f13ux6162-ux7ecfux5e38ux5361ux5728
 删除 \lstinline!texlive\2016\texmf-var\fonts\cache! 文件夹下字体缓存,
 重新生成字体缓存, 执行
 \lstinline!texlive\2016\bin\win32\fc-cache.exe!\footnote{\href{https://www.zhihu.com/question/51999238/answer/135852542}{LaTeX编译卡顿怎么办？}}.
+可更改示例代码的路径, 编译前执行一次.
+
+\begin{lstlisting}
+del /q D:\applications\texlive\2016\texmf-var\fonts\cache\*
+D:\applications\texlive\2016\bin\win32\fc-cache.exe
+\end{lstlisting}
 
 \subsubsection{listings
 代码换行}\label{listings-ux4ee3ux7801ux6362ux884c}

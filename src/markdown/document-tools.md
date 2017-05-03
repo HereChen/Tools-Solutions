@@ -12,13 +12,20 @@ pandoc src/markdown/*.md -o build/latex/content.tex
 
 ### markdown 转 LaTeX, 用 listings 包替换 verbatim
 
+```bat
 pandoc --listings src/markdown/*.md -o build/latex/content.tex
+```
 
 ## LaTeX
 
 ### Windows 上编译缓慢, 经常卡在 eu1lmr.fd
 
-删除 `texlive\2016\texmf-var\fonts\cache` 文件夹下字体缓存, 重新生成字体缓存, 执行 `texlive\2016\bin\win32\fc-cache.exe`[^latexCompileSlowly].
+删除 `texlive\2016\texmf-var\fonts\cache` 文件夹下字体缓存, 重新生成字体缓存, 执行 `texlive\2016\bin\win32\fc-cache.exe`[^latexCompileSlowly]. 可更改示例代码的路径, 编译前执行一次.
+
+```bat
+del /q D:\applications\texlive\2016\texmf-var\fonts\cache\*
+D:\applications\texlive\2016\bin\win32\fc-cache.exe
+```
 
 [^latexCompileSlowly]: [LaTeX编译卡顿怎么办？](https://www.zhihu.com/question/51999238/answer/135852542)
 

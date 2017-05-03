@@ -67,7 +67,7 @@ idea 编辑器可安装 FindBugs-IDEA 插件 (File->Settings->Plugins->Browse re
 </reporting>
 ```
 
-`mvn site` 执行后在 Project Reports -> FindBugs 查看报告.
+`mvn site` 执行后在 Project Reports -> FindBugs 查看报告. `mvn site` 执行下载 FindBugs 相关依赖错误时, 可尝试用 VPN 解决.
 
 ## sonar
 
