@@ -165,6 +165,65 @@ script:
     - ./build.sh
 \end{lstlisting}
 
+\section{版本控制}\label{ux7248ux672cux63a7ux5236}
+
+\subsection{git 多账户}\label{git-ux591aux8d26ux6237}
+
+应用于多个代码托管站点多账户场景, 比如 github、gitlab、码云等\footnote{\href{https://gist.github.com/jexchan/2351996}{Multiple
+  SSH Keys settings for different github account}}\footnote{\href{https://serverfault.com/questions/253313/ssh-hostname-returns-bad-owner-or-permissions-on-ssh-config}{ssh
+  hostname returns ``Bad owner or permissions on
+  \textasciitilde{}/.ssh/config''}}. 配置完成后方便多个账户同时使用. 以
+github 和 gitlab 为例, 按照以下步骤完成配置. 除了以下提供的配置方法,
+Windows 10 上可以用 Bash On Ubuntu On Windows 额外添加一个 git 账户,
+适用于只有两个账户的情况.
+
+\subsubsection{生成公钥}\label{ux751fux6210ux516cux94a5}
+
+生成公钥并添加到代码托管站点. 生成的时候, 输入不同的文件名保存.
+
+\begin{lstlisting}[language=bash]
+ssh-keygen -t rsa -C "chenlei.here@qq.com"
+\end{lstlisting}
+
+\begin{lstlisting}
+chmod 600 ~/.ssh/config
+ssh-agent bash
+ssh-add ~/.ssh/id_rsa_gitlab
+ssh-add ~/.ssh/id_rsa_github
+\end{lstlisting}
+
+\subsubsection{添加 ssh
+配置文件}\label{ux6dfbux52a0-ssh-ux914dux7f6eux6587ux4ef6}
+
+\begin{lstlisting}[language=bash]
+touch ~/.ssh/config
+\end{lstlisting}
+
+创建 config 文件, 并添加以下内容.
+
+\begin{lstlisting}
+# gitlab
+Host gitlab
+    HostName gitlab.com
+    User HereChen
+    IdentityFile ~/.ssh/id_rsa_gitlab
+
+# github
+Host github
+    HostName github.com
+    User HereChen
+    IdentityFile ~/.ssh/id_rsa_github
+\end{lstlisting}
+
+\subsubsection{为项目设置单独的账户配置}\label{ux4e3aux9879ux76eeux8bbeux7f6eux5355ux72ecux7684ux8d26ux6237ux914dux7f6e}
+
+\begin{lstlisting}[language=bash]
+git clone git@github.com:HereChen/Tools-Solutions.git
+cd Tools-Solutions
+git config user.name "HereChen"
+git config user.email "chenlei.here@qq.com"
+\end{lstlisting}
+
 \section{文档处理工具}\label{ux6587ux6863ux5904ux7406ux5de5ux5177}
 
 \subsection{Pandoc}\label{pandoc}

@@ -49,7 +49,7 @@
 \usepackage{listings}
 \lstset{
     basicstyle=\ttfamily\small,
-    columns=flexible,
+    columns=flexible, % code copy
     numbers=left,
     numberstyle=\tiny,
     stepnumber=1,
