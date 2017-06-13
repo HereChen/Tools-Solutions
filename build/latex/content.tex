@@ -177,7 +177,14 @@ github 和 gitlab 为例, 按照以下步骤完成配置. 除了以下提供的�
 Windows 10 上可以用 Bash On Ubuntu On Windows 额外添加一个 git 账户,
 适用于只有两个账户的情况.
 
-\subsubsection{生成公钥}\label{ux751fux6210ux516cux94a5}
+\subsubsection{git 多账户配置}\label{git-ux591aux8d26ux6237ux914dux7f6e}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  生成公钥
+\end{enumerate}
 
 生成公钥并添加到代码托管站点. 生成的时候, 输入不同的文件名保存.
 
@@ -192,14 +199,15 @@ ssh-add ~/.ssh/id_rsa_gitlab
 ssh-add ~/.ssh/id_rsa_github
 \end{lstlisting}
 
-\subsubsection{添加 ssh
-配置文件}\label{ux6dfbux52a0-ssh-ux914dux7f6eux6587ux4ef6}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  添加 ssh 配置文件
+\end{enumerate}
 
-\begin{lstlisting}[language=bash]
-touch ~/.ssh/config
-\end{lstlisting}
-
-创建 config 文件, 并添加以下内容.
+创建 config 文件(\lstinline!touch ~/.ssh/config!), 并添加以下内容.
 
 \begin{lstlisting}
 # gitlab
@@ -215,7 +223,13 @@ Host github
     IdentityFile ~/.ssh/id_rsa_github
 \end{lstlisting}
 
-\subsubsection{为项目设置单独的账户配置}\label{ux4e3aux9879ux76eeux8bbeux7f6eux5355ux72ecux7684ux8d26ux6237ux914dux7f6e}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  为项目设置单独的账户配置
+\end{enumerate}
 
 \begin{lstlisting}[language=bash]
 git clone git@github.com:HereChen/Tools-Solutions.git
@@ -223,6 +237,68 @@ cd Tools-Solutions
 git config user.name "HereChen"
 git config user.email "chenlei.here@qq.com"
 \end{lstlisting}
+
+\subsubsection{启动时添加 SSH}\label{ux542fux52a8ux65f6ux6dfbux52a0-ssh}
+
+每次重新启动系统或者打开 Git 客户端, ssh-add 添加的信息失效,
+可配置在启动时添加. Linux 可在 barshrc
+文件(\lstinline!sudo vim ~/.bashrc!)中添加以下内容.
+
+\begin{lstlisting}[language=bash]
+# https://unix.stackexchange.com/questions/90853/how-can-i-run-ssh-add-automatically-without-password-prompt
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add -D
+  ssh-add ~/.ssh/id_rsa_oschina
+  ssh-add ~/.ssh/id_rsa_github
+  ssh-add -l
+fi
+\end{lstlisting}
+
+\subsubsection{git
+一个库向两个托管服务器提交}\label{git-ux4e00ux4e2aux5e93ux5411ux4e24ux4e2aux6258ux7ba1ux670dux52a1ux5668ux63d0ux4ea4}
+
+\subsection{git
+提交信息格式化}\label{git-ux63d0ux4ea4ux4fe1ux606fux683cux5f0fux5316}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  工具安装
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+npm install -g commitizen
+npm install -g cz-conventional-changelog
+\end{lstlisting}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  初始化
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+commitizen init cz-conventional-changelog --save --save-exact
+\end{lstlisting}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  提交
+\end{enumerate}
+
+\begin{lstlisting}[language=bash]
+git cz -a
+\end{lstlisting}
+
+提交时需要填写以下信息: 选择提交的类型(新功能, bug 修复等等),
+描述修改的范围, 简要描述修改的内容, 具体描述修改的内容.
 
 \section{文档处理工具}\label{ux6587ux6863ux5904ux7406ux5de5ux5177}
 
