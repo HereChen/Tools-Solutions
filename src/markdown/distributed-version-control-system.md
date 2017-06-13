@@ -50,5 +50,48 @@ git config user.name "HereChen"
 git config user.email "chenlei.here@qq.com"
 ```
 
+### 启动时添加
+
+每次重新启动系统或者打开 Git 客户端, ssh-add 添加的信息失效, 可配置在启动时添加.
+
+```bash
+# https://unix.stackexchange.com/questions/90853/how-can-i-run-ssh-add-automatically-without-password-prompt
+$ sudo vim ~/.bashrc
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add -D
+  ssh-add ~/.ssh/id_rsa_oschina
+  ssh-add ~/.ssh/id_rsa_github
+  ssh-add -l
+fi
+```
+
 [^gitMultipleAccount]: [Multiple SSH Keys settings for different github account](https://gist.github.com/jexchan/2351996)
 [^gitMultipleAccountBadOwner]: [ssh hostname returns “Bad owner or permissions on ~/.ssh/config”](https://serverfault.com/questions/253313/ssh-hostname-returns-bad-owner-or-permissions-on-ssh-config)
+
+## git 一个库向两个托管服务器提交
+
+## git 提交信息格式化
+
+**工具安装**
+
+```bash
+npm install -g commitizen
+npm install -g cz-conventional-changelog
+```
+
+**初始化**
+
+```bash
+commitizen init cz-conventional-changelog --save --save-exact
+```
+
+**提交**
+
+```bash
+git cz -a
+```
+
+选择提交的类型(新功能, bug 修复等等), 描述修改的范围, 简要描述修改的内容, 具体描述修改的内容.
+
+
