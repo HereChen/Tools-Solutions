@@ -1,4 +1,18 @@
-# 文档处理工具
+# 文档及文档处理工具
+
+## GitHub 项目文档
+
+目的: 通过个人在 GitHub 的博客域名访问项目文档.
+
+1. 项目(repository)下创建 `docs` 文件夹, 并创建一个测试文档.
+
+```bash
+mkdir docs
+echo "docs test" > index.md
+```
+
+2. 在 settings 下启用 GitHub Pages: Source 条目选择 `master branch /docs folder` 并 `Save`, 进一步的可以在 `Theme Chooser` 条目下选择主题样式.
+3. `Save` 操作成功后会指示项目文档地址, 例如: `https://herechen.github.io/仓库名(项目名)/`.
 
 ## Pandoc
 
