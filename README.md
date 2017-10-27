@@ -24,6 +24,10 @@
 
 - LaTeX 代码复制包括行号.
 
+## refference
+
+- `src/fonts`, [SivilTaram/BUAAOS-guide-book](https://github.com/SivilTaram/BUAAOS-guide-book)
+
 ## 更新
 
 ### 2017-05-03

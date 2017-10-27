@@ -17,7 +17,7 @@ markdown_to_latex() {
     cp src/latex/main.tex build/latex/
 }
 
-latex_to_pdf(){
+latex_to_pdf() {
     mkdir build/pdf
     xelatex  build/latex/main.tex
     xelatex  build/latex/main.tex
@@ -29,8 +29,14 @@ markdown_to_docx() {
     pandoc -s src/markdown/*.md -o build/docx/main.docx
 }
 
+chinese_fonts() {
+    mkdir -p /usr/share/fonts/opentype/
+    mv ./src/fonts/*.otf /usr/share/fonts/opentype/
+}
+
 main() {
     clean
+    chinese_fonts
     markdown_to_latex
     latex_to_pdf
     markdown_to_docx
