@@ -20,8 +20,6 @@ make install
 ```
 # 64bit node install
 curl -o node-v6.10.0-linux-x64.tar.xz https://nodejs.org/dist/v6.10.0/node-v6.10.0-linux-x64.tar.xz
-mv /opt/
-cd /opt/
 tar -xvJf node-v6.10.0-linux-x64.tar.xz
 mv node-v6.10.0-linux-x64 node
 
